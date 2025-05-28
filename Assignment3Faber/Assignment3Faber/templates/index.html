@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32C6 Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Device Control</h1>
+
+    <section>
+        <h2>Photoresistor</h2>
+        <div id="value">Loading...</div>
+        <button onclick="fetchValue()">Refresh Value</button>
+    </section>
+
+    <section>
+        <h2>RGB Control</h2>
+        <form action="/control" method="post">
+            <label for="red">Red:</label>
+            <input type="range" id="red" name="red" min="0" max="255" value="0">
+            <label for="green">Green:</label>
+            <input type="range" id="green" name="green" min="0" max="255" value="0">
+            <label for="blue">Blue:</label>
+            <input type="range" id="blue" name="blue" min="0" max="255" value="0">
+            <button type="submit">Set Color</button>
+        </form>
+    </section>
+        <form method="POST" action="/melody">
+          <label for="volume">Volume:</label>
+          <input type="range" id="volume" name="volume" min="0" max="32000" value="16000"><br><br>
+
+          <button name="melody" value="pacman"> Pacman</button>
+          <button name="melody" value="nokia">Nokia</button>
+          <button name="melody" value="mario">Mario</button>
+          <button name="melody" value="doom">Doom</button>
+          <button name="melody" value="xmas">Xmas</button>
+       </form>
+    <section>
+        <h2>Serial RGB LED Control</h2>
+        <form action="/control" method="post">
+            <label for="sindex">LED Index (0 = all):</label>
+            <input type="number" id="sindex" name="sindex" min="0" max="3" value="0"><br>
+            <label for="sred">Red:</label>
+            <input type="range" id="sred" name="sred" min="0" max="255" value="0"><br>
+            <label for="sgreen">Green:</label>
+            <input type="range" id="sgreen" name="sgreen" min="0" max="255" value="0"><br>
+            <label for="sblue">Blue:</label>
+            <input type="range" id="sblue" name="sblue" min="0" max="255" value="0"><br>
+            <button type="submit">Set Serial LED</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Buzzer Control</h2>
+        <form action="/control" method="post">
+            <label for="buzzer">Buzzer:</label>
+            <select id="buzzer" name="buzzer">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select>
+            <button type="submit">Set Buzzer</button>
+        </form>
+    </section>
+    
+
+    <script>
+        function fetchValue() {
+            fetch('/value')
+                .then(response => response.text())
+                .then(value => {
+                    document.getElementById('value').textContent = value;
+                });
+        }
+    </script>
+</body>
+</html>
