@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device configuration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>WiFi and ThingSpeak settings</h1>
+    <form action="/save" method="post">
+        <label>SSID: <input type="text" name="ssid" required></label><br><br>
+        <label>Password: <input type="password" name="password" required></label><br><br>
+        <label>ThingSpeak API Key: <input type="text" name="api_key" required></label><br><br>
+        <input type="submit" value="Save configuration">
+    </form>
+</body>
+</html>
+
